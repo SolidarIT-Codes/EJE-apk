@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-title>EJE</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding >
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Chargement...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-item ion-item>
+    <ion-label><h1>{{badge}}</h1></ion-label> 
+    
+  </ion-item>
+    <div *ngFor="let actu of actus">
+  <ion-card>
+    <img src="/assets/img/blad.png"/>
+    <ion-card-content>
+      <ion-card-title>
+          {{actu.titre}}
+          <br>
+         <span>Date: </span><i>{{actu.moment}}</i> 
+        </ion-card-title>
+      <h3>Ville:  {{actu.ville}}</h3>
+        <br>
+        <h3>Heure : {{actu.heure}}</h3>
+        <h3>Description :</h3>
+        <p>{{actu.description}}</p> 
+        
+        
+      <hr>
+      <div *ngIf="statut == 'donneur'">
+        <button ion-button (click)="scan()">Scan &nbsp;<ion-icon name="ios-qr-scanner"></ion-icon></button>
+      </div>
+      
+    </ion-card-content>
+  </ion-card>
+      </div>
+      <div *ngIf="scannedCode">
+        Resultat est : {{ scannedCode }}
+      </div>
+</ion-content>

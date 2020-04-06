@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-title align="center">
+      Bienvenue
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <img src="/assets/img/ejelo.png" alt="logo eje"/>
+  <p align="center">
+    Bienvenue sur EJE
+  </p>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="Email" value="" ></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Mot de passe</ion-label>
+      <ion-input type="password" [(ngModel)]="Password" value=""></ion-input>
+    </ion-item>
+
+    
+      <button ion-button type="submit" color="light" (click)="login()" full> Connexion </button>
+    
+
+    <p align="center">
+      <a (click)="onGotoinscription()">Créer un compte</a>
+    </p>
+
+    <p align="center">
+      <a>Mot de passe oublier?</a>
+    </p>
+
+  
+  </ion-list>
+</ion-content>

@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-title>Notification</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div>
+    <ion-segment style="color: lightcoral;" [(ngModel)]="pet">
+      <ion-segment-button  value="kittens">
+        Alertes
+      </ion-segment-button>
+      <ion-segment-button value="puppies">
+        Historique
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  
+  <div [ngSwitch]="pet">
+    <ion-list *ngSwitchCase="'puppies'">
+      <div *ngFor="let histo of histos">
+
+        <ion-item>
+          <ion-card>
+            <ion-card-header ><ion-item>
+              <ion-thumbnail item-start>
+                <img src="/assets/img/ok.png">
+              </ion-thumbnail><br>
+              <h2>Effectuer</h2>
+            </ion-item> 
+              </ion-card-header>
+            
+              <ion-card-content>
+                
+                <h2>Commandeur : {{histo.Commandeur}}</h2>
+                <h3>Destination : {{histo.Destination}}</h3>
+              </ion-card-content>
+            </ion-card>
+        </ion-item>
+      </div>
+      
+      
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'kittens'">
+      <ion-item ion-item>
+        <ion-label>{{badge}}</ion-label> 
+      </ion-item>
+        <div *ngFor="let info of infos">
+
+      <ion-item>
+        <ion-card>
+          <ion-card-header >
+              <h2 color="red">Poche de Sang</h2> 
+            </ion-card-header>
+          
+            <ion-card-content>
+              
+              <h2>Commandeur : {{info.Commandeur}}</h2>
+              <h3>Destination : {{info.Destination}}</h3>
+              
+              <button ion-button full (click)="take(info.id)">
+                <ion-icon name="md-arrow-dropright-circle"></ion-icon>
+                Accepter la course</button>
+            </ion-card-content>
+          </ion-card>
+      </ion-item>
+    </div>
+    </ion-list>
+        
+  </div>
+</ion-content>

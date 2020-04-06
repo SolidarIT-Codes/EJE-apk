@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-title>Forum</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-item ion-item>
+    <ion-label>{{badge}}</ion-label> 
+  </ion-item>
+    <div  *ngFor="let msge of msges">
+
+        <ion-card >
+         <strong style="font-family: 'Times New Roman', Times, serif;">{{msge.auteur}}</strong> 
+            
+            <ion-card-content style="color: darksalmon;">
+                <p>{{msge.message}}</p>
+            </ion-card-content>
+          </ion-card>
+        
+        </div>
+</ion-content>
+<ion-footer no-padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col col-9><div id="rounded">
+            <ion-textarea [(ngModel)]="message" placeholder="Tapez votre message"></ion-textarea>
+          </div> </ion-col>
+          <ion-col col-3><button ion-button round (click)="send()">
+            <ion-icon name="md-send"></ion-icon></button></ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-footer>
